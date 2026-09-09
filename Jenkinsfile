@@ -3,16 +3,13 @@ pipeline {
 
     stages {
 
-        stage('Build') {
+        stage('Environment') {
             steps {
-                bat 'gcc -Wall -Wextra -g main.c sensor.c -o main.exe'
+                bat 'where gcc'
+                bat 'gcc --version'
+                bat 'echo %PATH%'
             }
         }
 
-        stage('Test') {
-            steps {
-                bat 'main.exe'
-            }
-        }
     }
 }
