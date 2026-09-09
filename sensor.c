@@ -21,7 +21,7 @@ void update_sensor(Sensor *sensor, int temperature, int voltage) {
     sensor->voltage = voltage;
     if (sensor->temperature <= 0) {
         sensor->status = SENSOR_OFF;
-    } else if (sensor->temperature >= 1 && sensor->temperature <= 70) {
+    } else if (sensor->temperature >= 1 && sensor->temperature < 70) {
         sensor->status = SENSOR_OK;
     } else if (sensor->temperature > 70 && sensor->temperature <= 100) {
         sensor->status = SENSOR_WARNING;
