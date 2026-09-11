@@ -33,7 +33,7 @@ int main() {
     }
 
     if(failed_tests == 0) {
-        printf("All test cases passed");
+        printf("All test cases passed - CI AUTOMATION\n");
         return 0;
     }
     else{
