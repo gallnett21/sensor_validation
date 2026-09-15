@@ -13,16 +13,6 @@ result = subprocess.run(
 
 output = result.stdout
 
-# === DEPURACIÓN PARA JENKINS ===
-print("--- INICIO SALIDA DE MAIN.EXE ---")
-print(f"Ruta intentada: {executable}")
-print(f"Existe el archivo: {os.path.exists(executable)}")
-print(f"Código de salida (returncode): {result.returncode}")
-print(f"Salida capturada (stdout): '{output}'")
-print(f"Errores capturados (stderr): '{result.stderr}'")
-print("--- FIN SALIDA DE MAIN.EXE ---")
-# ================================
-
 testsuite = ET.Element(
     "testsuite",
     name="Sensor Validation"
