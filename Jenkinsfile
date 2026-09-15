@@ -18,5 +18,11 @@ pipeline {
                 bat 'main.exe'
             }
         }
+
+        stage('Archive'){
+            steps {
+                archiveArtifacts artifacts: 'main.exe', fingerprint: true
+            }
+        }
     }
 }
