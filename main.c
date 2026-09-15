@@ -25,7 +25,7 @@ int main() {
          i = 0; i < sizeof(tests)/sizeof(tests[0]); i++) {
         update_sensor(&sensor, tests[i].temperature, 3200);
         if(sensor.status == tests[i].expected_status) {
-            printf("Test %zu : temperature=%d, expected_status=%d, actual_status=%d\n", i, tests[i].temperature, tests[i].expected_status, sensor.status);
+            printf("Test %zu passed: temperature=%d, expected_status=%d, actual_status=%d\n", i, tests[i].temperature, tests[i].expected_status, sensor.status);
         } else {
             printf("Test %zu failed: temperature=%d, expected_status=%d, actual_status=%d\n", i, tests[i].temperature, tests[i].expected_status, sensor.status);
             failed_tests ++;
