@@ -1,8 +1,11 @@
 import subprocess
 import xml.etree.ElementTree as ET
+import os
+
+executable = os.path.join(os.getcwd(), "main.exe")
 
 result = subprocess.run(
-    ["main.exe"],
+    [executable],
     capture_output=True,
     text=True
 )
