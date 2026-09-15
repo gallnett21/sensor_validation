@@ -19,16 +19,15 @@ pipeline {
             }
         }
 
-        stage('Publish Test Report') {
-            steps {
-                junit 'test-results.xml'
-            }
-        }
-
         stage('Archive'){
             steps {
                 archiveArtifacts artifacts: 'main.exe', fingerprint: true
             }
+        }
+    }
+    post {
+        always {
+            junit 'test-results.xml'
         }
     }
 }
