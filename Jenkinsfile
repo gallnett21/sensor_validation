@@ -12,10 +12,16 @@ pipeline {
                 bat 'gcc -Wall -Wextra -g main.c sensor.c -o main.exe'
             }
         }
-        
+
         stage('Test') {
             steps {
-                bat 'main.exe'
+                bat 'py tests\\test_sensor.py'
+            }
+        }
+
+        stage('Publish Test Report') {
+            steps {
+                junit 'test-results.xml'
             }
         }
 
