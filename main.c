@@ -40,5 +40,7 @@ int main() {
         printf("%d test case failed", failed_tests);
         return 1;
     }
+
+    printf("Artifacts added succesffully");
     
 }
