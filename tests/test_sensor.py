@@ -1,7 +1,8 @@
+import os
 import subprocess
 import xml.etree.ElementTree as ET
-import os
 
+# Asegura encontrar main.exe en la raíz del proyecto
 executable = os.path.join(os.getcwd(), "main.exe")
 
 result = subprocess.run(
@@ -21,34 +22,32 @@ passed = 0
 failed = 0
 
 for line in output.splitlines():
-    if line.startswith("Test ") and " passed:" in line:
-        test_name = " ".join(line.split(" ")[:2])
-
+    line = line.strip()
+    
+    # Evalúa si la línea corresponde a una prueba exitosa
+    if line.startswith("Test") and "passed" in line:
+        test_name = line.split(":")[0]  # Obtiene "Test 0 passed" o "Test 0"
         ET.SubElement(
             testsuite,
             "testcase",
             name=test_name
         )
-
         passed += 1
 
-    elif line.startswith("Test ") and " failed:" in line:
-        test_name = " ".join(line.split(" ")[:2])
-
+    # Evalúa si la línea corresponde a una prueba fallida
+    elif line.startswith("Test") and "failed" in line:
+        test_name = line.split(":")[0]
         testcase = ET.SubElement(
             testsuite,
             "testcase",
             name=test_name
         )
-
         failure = ET.SubElement(
             testcase,
             "failure",
             message="Test case failed"
         )
-
         failure.text = line
-
         failed += 1
 
 testsuite.set("tests", str(passed + failed))
