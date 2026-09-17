@@ -3,7 +3,7 @@ import subprocess
 import xml.etree.ElementTree as ET
 
 # Asegura encontrar main.exe en la raíz del proyecto
-executable = os.path.join(os.getcwd(), "main.exe")
+executable = os.path.join(os.getcwd(), "build","sensor_tests.exe")
 
 result = subprocess.run(
     [executable],

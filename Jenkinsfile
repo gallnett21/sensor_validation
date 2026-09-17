@@ -7,9 +7,15 @@ pipeline {
 
     stages {
 
+        stage('Configure') {
+            steps {
+                bat 'cmake -S . -B build'
+            }
+        }
+
         stage('Build') {
             steps {
-                bat 'gcc -Wall -Wextra -g -Iinclude src\\sensor.c tests\\test_sensor.c -o main.exe'
+                bat 'cmake --build build'
             }
         }
 
@@ -21,7 +27,7 @@ pipeline {
 
         stage('Archive'){
             steps {
-                archiveArtifacts artifacts: 'main.exe', fingerprint: true
+                archiveArtifacts artifacts: 'build/sensor_tests.exe', fingerprint: true
             }
         }
     }
