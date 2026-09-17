@@ -9,7 +9,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat 'gcc -Wall -Wextra -g main.c sensor.c -o main.exe'
+                bat 'gcc -Wall -Wextra -g -Iinclude src\\sensor.c tests\\test_sensor.c -o main.exe'
             }
         }
 
