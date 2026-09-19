@@ -17,13 +17,14 @@ const char* get_status_string(SensorStatus status) {
 }
 
 void update_sensor(Sensor *sensor, int temperature, int voltage) {
+    int unused_value = 64;
     sensor->temperature = temperature;
     sensor->voltage = voltage;
     if (sensor->temperature <= 0) {
         sensor->status = SENSOR_OFF;
-    } else if (sensor->temperature >= 1 && sensor->temperature <= 70) {
+    } else if (sensor->temperature <= 70) {
         sensor->status = SENSOR_OK;
-    } else if (sensor->temperature > 70 && sensor->temperature <= 100) {
+    } else if (sensor->temperature <= 100) {
         sensor->status = SENSOR_WARNING;
     } else {
         sensor->status = SENSOR_ERROR;

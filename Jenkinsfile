@@ -13,6 +13,12 @@ pipeline {
             }
         }
 
+        stage('Static Analysis') {
+            steps {
+                bat 'cppcheck --enable=warning,style,performance,portability --std=c11 -Iinclude src tests --error-exitcode=1'
+             }
+        }
+
         stage('Build') {
             steps {
                 bat 'cmake --build build'
