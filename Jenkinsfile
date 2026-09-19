@@ -2,10 +2,9 @@ pipeline {
     agent any
 
     environment {
-        environment {
-             PATH = "C:\\msys64\\ucrt64\\bin;C:\\Users\\gall2\\AppData\\Local\\Programs\\Python\\Python313;C:\\Program Files\\Cppcheck;${env.PATH}"
-}
-    }
+            PATH = "C:\\msys64\\ucrt64\\bin;C:\\Users\\gall2\\AppData\\Local\\Programs\\Python\\Python313;C:\\Program Files\\Cppcheck;${env.PATH}"
+        }
+
 
     stages {
 
