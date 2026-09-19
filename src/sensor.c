@@ -17,7 +17,6 @@ const char* get_status_string(SensorStatus status) {
 }
 
 void update_sensor(Sensor *sensor, int temperature, int voltage) {
-    int unused_value = 64;
     sensor->temperature = temperature;
     sensor->voltage = voltage;
     if (sensor->temperature <= 0) {
