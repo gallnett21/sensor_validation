@@ -2,7 +2,9 @@ pipeline {
     agent any
 
     environment {
-        PATH = "C:\\msys64\\ucrt64\\bin;C:\\Users\\gall2\\AppData\\Local\\Programs\\Python\\Python313;${env.PATH}"
+        environment {
+             PATH = "C:\\msys64\\ucrt64\\bin;C:\\Users\\gall2\\AppData\\Local\\Programs\\Python\\Python313;C:\\Program Files\\Cppcheck;${env.PATH}"
+}
     }
 
     stages {
@@ -15,6 +17,8 @@ pipeline {
 
         stage('Static Analysis') {
             steps {
+                bat 'where cppcheck'
+                bat 'cppcheck --version'
                 bat 'cppcheck --enable=warning,style,performance,portability --std=c11 -Iinclude src tests --error-exitcode=1'
              }
         }
