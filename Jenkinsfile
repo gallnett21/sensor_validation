@@ -19,7 +19,13 @@ pipeline {
             }
         }
 
-        stage('Test') {
+        stage('CTest') {
+            steps {
+                bat 'ctest --test-dir build --output-on-failure'
+            }
+        }
+
+        stage('Test Report') {
             steps {
                 bat 'python tests\\test_sensor.py'
             }

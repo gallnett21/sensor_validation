@@ -20,3 +20,10 @@ target_compile_options(
     -Wall
     -Wextra
 )
+
+enable_testing()
+
+add_test(
+    NAME sensor_boundary_tests
+    COMMAND sensor_tests
+)
