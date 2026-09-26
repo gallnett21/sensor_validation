@@ -20,7 +20,6 @@ int main() {
     };
 
     int failed_tests = 0;
-    int unused_value = 64;
 
     for(size_t
          i = 0; i < sizeof(tests)/sizeof(tests[0]); i++) {
