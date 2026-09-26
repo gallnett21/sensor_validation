@@ -8,6 +8,15 @@ pipeline {
 
     stages {
 
+        stage('Clean') {
+            steps {
+                bat '''
+                    if exist build rmdir /S /Q build
+                    if exist test-results.xml del /Q test-results.xml
+                '''
+            }
+        }
+
         stage('Configure') {
             steps {
                 bat 'cmake -S . -B build'
