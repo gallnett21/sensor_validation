@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.20)
 
 project(sensor_validation C)
 
+option(ENABLE_COVERAGE "Enable code coverage" OFF)
+
 add_executable(
     sensor_tests
     src/sensor.c
@@ -20,6 +22,20 @@ target_compile_options(
     -Wall
     -Wextra
 )
+
+if (ENABLE_COVERAGE)
+    target_compile_options(
+        sensor_tests
+        PRIVATE
+        --coverage
+    )
+
+    target_link_options(
+        sensor_tests
+        PRIVATE
+        --coverage
+    )
+endif()
 
 enable_testing()
 
