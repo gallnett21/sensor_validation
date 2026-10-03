@@ -3,3 +3,5 @@
 *vscode/
 *.xml
 build/
+build-coverage/
+*.gcov

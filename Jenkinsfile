@@ -12,7 +12,9 @@ pipeline {
             steps {
                 bat '''
                     if exist build rmdir /S /Q build
+                    if exist build-coverage rmdir /S /Q build-coverage
                     if exist test-results.xml del /Q test-results.xml
+                    if exist sensor.c.gcov del /Q sensor.c.gcov
                 '''
             }
         }
@@ -40,6 +42,15 @@ pipeline {
         stage('CTest') {
             steps {
                 bat 'ctest --test-dir build --output-on-failure'
+            }
+        }
+
+        stage('Coverage') {
+            steps {
+                bat 'cmake -S . -B build-coverage -DENABLE_COVERAGE=ON'
+                bat 'CMAKE --build build-coverage'
+                bat 'ctest --test-dir build-coverage --output-on-failure'
+                bat 'gcov -b -c build-coverage/CMakeFiles/sensor_tests.dir/src/sensor.c.obj'
             }
         }
 
