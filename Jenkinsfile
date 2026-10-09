@@ -46,6 +46,12 @@ pipeline {
             }
         }
 
+        stage('Test Report') {
+            steps {
+                bat 'python tests\\test_sensor.py'
+            }
+        }
+
         stage('Coverage') {
             steps {
                 bat 'cmake -S . -B build-coverage -DENABLE_COVERAGE=ON'
@@ -55,12 +61,6 @@ pipeline {
                 bat 'gcov -b -c build-coverage/CMakeFiles/sensor_tests.dir/src/sensor.c.obj > coverage-summary.txt'
                 bat 'type coverage-summary.txt'
                 bat 'python tests\\check_coverage.py'
-            }
-        }
-
-        stage('Test Report') {
-            steps {
-                bat 'python tests\\test_sensor.py'
             }
         }
 
