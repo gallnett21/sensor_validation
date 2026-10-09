@@ -5,3 +5,4 @@
 build/
 build-coverage/
 *.gcov
+coverage-summary.txt
