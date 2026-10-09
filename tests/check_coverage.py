@@ -1,4 +1,4 @@
-COVERAGE_THRESHOLD = 80.0
+COVERAGE_THRESHOLD = 85.0
 
 with open("coverage-summary.txt", "r", encoding="utf-8") as file:
     lines = file.readlines()
