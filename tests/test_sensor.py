@@ -25,8 +25,8 @@ for line in output.splitlines():
     line = line.strip()
     
     # Evalúa si la línea corresponde a una prueba exitosa
-    if line.startswith("Test") and "passed" in line:
-        test_name = line.split(":")[0]  # Obtiene "Test 0 passed" o "Test 0"
+    if line.startswith(("Test", "Status string test")) and "passed" in line:
+        test_name = line.split(":")[0].replace(" passed", "")  # Obtiene "Test 0 passed" o "Test 0"
         ET.SubElement(
             testsuite,
             "testcase",
@@ -35,8 +35,8 @@ for line in output.splitlines():
         passed += 1
 
     # Evalúa si la línea corresponde a una prueba fallida
-    elif line.startswith("Test") and "failed" in line:
-        test_name = line.split(":")[0]
+    elif line.startswith(("Test", "Status string test")) and "failed" in line:
+        test_name = line.split(":")[0].replace(" failed", "")
         testcase = ET.SubElement(
             testsuite,
             "testcase",
